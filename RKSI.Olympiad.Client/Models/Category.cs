@@ -17,14 +17,14 @@ namespace RKSI.Olympiad.Client.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.Hotel = new HashSet<Hotel>();
+            this.HotelRooms = new HashSet<HotelRoom>();
         }
     
         public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public string Designation { get; set; }
         public string CategoryDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hotel> Hotel { get; set; }
+        public virtual ICollection<HotelRoom> HotelRooms { get; set; }
     }
 }

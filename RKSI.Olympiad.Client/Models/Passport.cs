@@ -17,8 +17,10 @@ namespace RKSI.Olympiad.Client.Models
         public int ClientId { get; set; }
         public string Series { get; set; }
         public string Number { get; set; }
-        public System.DateTime IssueDate { get; set; }
-        public string Address { get; set; }
+        public string DocumentType { get; set; }
+        public System.DateTime Issued { get; set; }
+        public string IssuedAddress { get; set; }
+        public string CountryIssued { get; set; }
     
         public virtual Client Client { get; set; }
     }

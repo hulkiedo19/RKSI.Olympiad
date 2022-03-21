@@ -66,36 +66,39 @@
     </ApplicationDefinition>
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\OpenWindowCommand.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Models\Category.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
+      <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
+      <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="Models\DatabaseContext.Context.cs">
+    <Compile Include="Models\DataContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.Context.tt</DependentUpon>
+      <DependentUpon>DataContext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DatabaseContext.cs">
+    <Compile Include="Models\DataContext.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
+      <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DatabaseContext.Designer.cs">
+    <Compile Include="Models\DataContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
+      <DependentUpon>DataContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dogovor.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
+    <Compile Include="Models\HotelRoom.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Hotel.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
+    <Compile Include="Models\MigrationCard.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Passport.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Treaty.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -151,12 +154,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\DatabaseContext.edmx">
+    <EntityDeploy Include="Models\DataContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\DatabaseContext.edmx.diagram">
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
+    <None Include="Models\DataContext.edmx.diagram">
+      <DependentUpon>DataContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -167,17 +170,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Models\DatabaseContext.Context.tt">
+    <Content Include="Models\DataContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
+      <DependentUpon>DataContext.edmx</DependentUpon>
+      <LastGenOutput>DataContext.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DatabaseContext.tt">
+    <Content Include="Models\DataContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-      <LastGenOutput>DatabaseContext.cs</LastGenOutput>
+      <DependentUpon>DataContext.edmx</DependentUpon>
+      <LastGenOutput>DataContext.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

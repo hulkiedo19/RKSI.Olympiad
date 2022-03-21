@@ -7,8 +7,9 @@
         xmlns:local="clr-namespace:RKSI.Olympiad.Client.Views"
         mc:Ignorable="d"
         Title="Авторизация" 
-        Height="300" 
-        Width="300">
+        ResizeMode="NoResize"
+        Height="230" 
+        Width="280">
 
     <Window.DataContext>
         <vm:LoginWindowViewModel/>

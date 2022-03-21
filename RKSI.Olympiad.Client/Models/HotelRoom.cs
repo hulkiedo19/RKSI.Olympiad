@@ -12,23 +12,24 @@ namespace RKSI.Olympiad.Client.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class HotelRoom
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
+        public HotelRoom()
         {
             this.Treaties = new HashSet<Treaty>();
         }
     
-        public int ClientId { get; set; }
-        public string FirstAndLastName { get; set; }
-        public string Gender { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
-        public string BonusCard { get; set; }
+        public int RoomNumber { get; set; }
+        public int CategoryId { get; set; }
+        public string Description { get; set; }
+        public int Floor { get; set; }
+        public int CostPerDay { get; set; }
+        public int SeatsNumber { get; set; }
+        public string Status { get; set; }
     
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Treaty> Treaties { get; set; }
-        public virtual MigrationCard MigrationCard { get; set; }
-        public virtual Passport Passport { get; set; }
     }
 }

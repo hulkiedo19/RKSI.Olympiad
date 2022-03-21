@@ -12,14 +12,18 @@ namespace RKSI.Olympiad.Client.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Dogovor
+    public partial class Treaty
     {
-        public int DogovorId { get; set; }
-        public int HotelId { get; set; }
-        public int CliendId { get; set; }
-        public System.DateTime DogovorDate { get; set; }
+        public int TreatyNumber { get; set; }
+        public System.DateTime TreatyDate { get; set; }
+        public int ClientId { get; set; }
+        public int RoomNumber { get; set; }
+        public System.DateTime DateEntrance { get; set; }
+        public System.DateTime DateEscape { get; set; }
+        public int SumOfPay { get; set; }
+        public string PaymentMethod { get; set; }
     
         public virtual Client Client { get; set; }
-        public virtual Hotel Hotel { get; set; }
+        public virtual HotelRoom HotelRoom { get; set; }
     }
 }

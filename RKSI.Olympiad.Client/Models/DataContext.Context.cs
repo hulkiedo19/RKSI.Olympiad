@@ -13,10 +13,10 @@ namespace RKSI.Olympiad.Client.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class DataContext : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public DataContext()
+            : base("name=DataContext")
         {
         }
     
@@ -25,10 +25,11 @@ namespace RKSI.Olympiad.Client.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<Dogovor> Dogovor { get; set; }
-        public virtual DbSet<Hotel> Hotel { get; set; }
-        public virtual DbSet<Passport> Passport { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<HotelRoom> HotelRooms { get; set; }
+        public virtual DbSet<MigrationCard> MigrationCards { get; set; }
+        public virtual DbSet<Passport> Passports { get; set; }
+        public virtual DbSet<Treaty> Treaties { get; set; }
     }
 }
