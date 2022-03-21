@@ -23,5 +23,18 @@ namespace RKSI.Olympiad.Client.Views
         {
             InitializeComponent();
         }
+
+        private void DocumentType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedString = ((sender as ComboBox).SelectedValue as TextBlock).Text;
+            if (selectedString == "Иностранный паспорт")
+            {
+                MigrationStackPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MigrationStackPanel.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

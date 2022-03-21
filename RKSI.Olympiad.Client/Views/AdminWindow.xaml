@@ -4,9 +4,157 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RKSI.Olympiad.Client.Views"
+        xmlns:vm="clr-namespace:RKSI.Olympiad.Client.ViewModels"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="AdminWindow"
+        ResizeMode="NoResize"
+        Height="auto" 
+        Width="500">
+    <Window.DataContext>
+        <vm:AdminWindowViewModel/>
+    </Window.DataContext>    
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="289*"/>
+            <ColumnDefinition Width="211*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
+            <TabItem
+                Header="Регистрация клиента">
+
+                <StackPanel 
+                    Orientation="Vertical"
+                    Margin="8">
+
+                    <TextBlock
+                        Text="Фамилия"/>
+                    <TextBox 
+                        Text="{Binding LastName}"/>
+
+                    <TextBlock
+                        Text="Имя"/>
+                    <TextBox 
+                        Text="{Binding FirstName}"/>
+
+                    <TextBlock
+                        Text="Отчество"/>
+                    <TextBox 
+                        Text="{Binding MiddleName}"/>
+
+                    <TextBlock
+                        Text="Пол"/>
+                    <ComboBox
+                        Text="{Binding Gender}">
+                        <TextBlock
+                            Text="Мужской"/>
+                        <TextBlock
+                            Text="Женский"/>
+                    </ComboBox>
+
+                    <TextBlock
+                        Text="Дата рождения"/>
+                    <DatePicker 
+                        Text="{Binding DateOfBirth}"/>
+
+                    <TextBlock
+                        Text="Серия паспорта"/>
+                    <TextBox 
+                        Text="{Binding Series}"/>
+
+                    <TextBlock
+                        Text="Номер паспорта"/>
+                    <TextBox 
+                        Text="{Binding Number}"/>
+
+                    <TextBlock
+                        Text="Кем выдан паспорт"/>
+                    <TextBox 
+                        Text="{Binding IssuedBy}"/>
+
+                    <TextBlock
+                        Text="Адрес по прописке"/>
+                    <TextBox 
+                        Text="{Binding Address}"/>
+
+                    <TextBlock
+                        Text="Вид документа"/>
+                    <ComboBox
+                        IsEditable="False"
+                        Text="{Binding DocumentType}"
+                        SelectionChanged="DocumentType_SelectionChanged">
+                        
+                        <TextBlock 
+                            Text="Паспорт РФ"/>
+                        <TextBlock 
+                            Text="Иностранный паспорт"/>
+                        
+                    </ComboBox>
+                    
+                    <!-- Миграционная карта -->
+                    <StackPanel
+                        x:Name="MigrationStackPanel"
+                        Visibility="Collapsed">
+                        
+                        <TextBlock
+                            Text="Номер миграционный карты"/>
+                        <TextBox
+                            Text="{Binding MigrationCardNumber}"/>
+
+                        <TextBlock
+                            Text="Откуда прибыл"/>
+                        <TextBox 
+                            Text="{Binding WhereCountry}"/>
+
+                        <TextBlock
+                            Text="Дата начала пребывания"/>
+                        <TextBox
+                            Text="{Binding StayWith}"/>
+
+                        <TextBlock
+                            Text="Дата окончания пребывания"/>
+                        <TextBox
+                            Text="{Binding StayBy}"/>
+
+                        <TextBlock
+                            Text="Цель визита"/>
+                        <TextBox
+                            Text="{Binding TripPurpose}"/>
+                    </StackPanel>
+
+                    <TextBlock
+                        Text="Страна выдачи"/>
+                    <TextBox
+                        Text="{Binding IssuedCountry}"/>
+
+                    <TextBlock 
+                        Text="Вид бонусной карты"/>
+                    <ComboBox
+                        Text="{Binding BonusCard}">
+                        
+                        <TextBlock
+                            Text="отсутствует"/>
+                        <TextBlock
+                            Text="обычная"/>
+                        <TextBlock
+                            Text="золотая"/>
+                        <TextBlock
+                            Text="платиновая"/>
+                        
+                    </ComboBox>
+                    
+                    <Button 
+                        Content="Зарегистрировать клиента"
+                        Command="{Binding RegistrationCommand}"
+                        Margin="0, 12, 0 ,0"/>
+                    
+                </StackPanel>
+            </TabItem>
+
+            <TabItem
+                Header="Вселение клиента">
+
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

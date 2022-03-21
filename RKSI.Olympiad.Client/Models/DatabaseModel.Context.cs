@@ -13,10 +13,10 @@ namespace RKSI.Olympiad.Client.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DataContext : DbContext
+    public partial class DatabaseEntities : DbContext
     {
-        public DataContext()
-            : base("name=DataContext")
+        public DatabaseEntities()
+            : base("name=DatabaseEntities")
         {
         }
     

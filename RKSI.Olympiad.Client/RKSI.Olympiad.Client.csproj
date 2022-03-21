@@ -67,40 +67,43 @@
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\OpenWindowCommand.cs" />
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\RegistrationCommand.cs" />
     <Compile Include="Models\Category.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataContext.Context.cs">
+    <Compile Include="Models\DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataContext.Context.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataContext.cs">
+    <Compile Include="Models\DatabaseModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataContext.Designer.cs">
+    <Compile Include="Models\DatabaseModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataContext.edmx</DependentUpon>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\HotelRoom.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MigrationCard.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Passport.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Treaty.cs">
-      <DependentUpon>DataContext.tt</DependentUpon>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AdminWindowViewModel.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
+    <Compile Include="ViewModels\UserWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
@@ -154,12 +157,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\DataContext.edmx">
+    <EntityDeploy Include="Models\DatabaseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\DataContext.edmx.diagram">
-      <DependentUpon>DataContext.edmx</DependentUpon>
+    <None Include="Models\DatabaseModel.edmx.diagram">
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -171,19 +174,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\DataContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataContext.edmx</DependentUpon>
-      <LastGenOutput>DataContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DataContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataContext.edmx</DependentUpon>
-      <LastGenOutput>DataContext.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\DatabaseModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DatabaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>DatabaseModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

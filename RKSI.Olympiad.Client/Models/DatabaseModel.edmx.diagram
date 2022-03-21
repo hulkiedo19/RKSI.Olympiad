@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d01b622093c645ff83e4e9ba7b829b0a" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseContext.Category" Width="1.5" PointX="1.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseContext.Client" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseContext.HotelRoom" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseContext.MigrationCard" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseContext.Passport" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseContext.Treaty" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseContext.FK__HotelRoom__Categ__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseContext.FK__Treaties__Client__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseContext.FK_MigrationCard_Clients_ClientId" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseContext.FK_Passport_Clients_ClientId" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseContext.FK__Treaties__HotelR__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

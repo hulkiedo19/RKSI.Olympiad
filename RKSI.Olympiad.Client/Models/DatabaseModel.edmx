@@ -4,32 +4,34 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище RKSI.Olympiad2.DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище DatabaseContext" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Designation" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CategoryDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CategoryDescription" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="ClientId" />
           </Key>
           <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstAndLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
-          <Property Name="BonusCard" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BonusCard" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="HotelRooms">
           <Key>
-            <PropertyRef Name="RoomNumber" />
+            <PropertyRef Name="HotelRoomId" />
           </Key>
-          <Property Name="RoomNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelRoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Floor" Type="int" Nullable="false" />
           <Property Name="CostPerDay" Type="int" Nullable="false" />
           <Property Name="SeatsNumber" Type="int" Nullable="false" />
@@ -40,23 +42,23 @@
             <PropertyRef Name="ClientId" />
           </Key>
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="CardNumber" Type="int" Nullable="false" />
-          <Property Name="WhereCountry" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="WhereCountry" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StayWith" Type="date" Nullable="false" />
           <Property Name="StayBy" Type="date" Nullable="false" />
-          <Property Name="TripPurpose" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TripPurpose" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Passports">
           <Key>
             <PropertyRef Name="ClientId" />
           </Key>
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="Series" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Series" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Number" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="DocumentType" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Issued" Type="date" Nullable="false" />
-          <Property Name="IssuedAddress" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="CountryIssued" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Issued" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="IssuedAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountryIssued" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Treaties">
           <Key>
@@ -65,7 +67,7 @@
           <Property Name="TreatyNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TreatyDate" Type="date" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="RoomNumber" Type="int" Nullable="false" />
+          <Property Name="HotelRoomId" Type="int" Nullable="false" />
           <Property Name="DateEntrance" Type="date" Nullable="false" />
           <Property Name="DateEscape" Type="date" Nullable="false" />
           <Property Name="SumOfPay" Type="int" Nullable="false" />
@@ -95,15 +97,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Treaties__RoomNu__31EC6D26">
+        <Association Name="FK__Treaties__HotelR__31EC6D26">
           <End Role="HotelRooms" Type="Self.HotelRooms" Multiplicity="1" />
           <End Role="Treaties" Type="Self.Treaties" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HotelRooms">
-              <PropertyRef Name="RoomNumber" />
+              <PropertyRef Name="HotelRoomId" />
             </Principal>
             <Dependent Role="Treaties">
-              <PropertyRef Name="RoomNumber" />
+              <PropertyRef Name="HotelRoomId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -131,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище RKSIOlympiad2DBModelContainer">
+        <EntityContainer Name="Хранилище DatabaseContextContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotelRooms" EntityType="Self.HotelRooms" Schema="dbo" store:Type="Tables" />
@@ -146,7 +148,7 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Treaties" EntitySet="Treaties" />
           </AssociationSet>
-          <AssociationSet Name="FK__Treaties__RoomNu__31EC6D26" Association="Self.FK__Treaties__RoomNu__31EC6D26">
+          <AssociationSet Name="FK__Treaties__HotelR__31EC6D26" Association="Self.FK__Treaties__HotelR__31EC6D26">
             <End Role="HotelRooms" EntitySet="HotelRooms" />
             <End Role="Treaties" EntitySet="Treaties" />
           </AssociationSet>
@@ -163,14 +165,14 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RKSI.Olympiad2.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DatabaseContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CategoryDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="HotelRooms" Relationship="Self.FK__HotelRoom__Categ__267ABA7A" FromRole="Categories" ToRole="HotelRooms" />
         </EntityType>
         <EntityType Name="Client">
@@ -178,38 +180,40 @@
             <PropertyRef Name="ClientId" />
           </Key>
           <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstAndLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="BonusCard" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BonusCard" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Treaties" Relationship="Self.FK__Treaties__Client__30F848ED" FromRole="Clients" ToRole="Treaties" />
           <NavigationProperty Name="MigrationCard" Relationship="Self.FK_MigrationCard_Clients_ClientId" FromRole="Clients" ToRole="MigrationCards" />
           <NavigationProperty Name="Passport" Relationship="Self.FK_Passport_Clients_ClientId" FromRole="Clients" ToRole="Passports" />
         </EntityType>
         <EntityType Name="HotelRoom">
           <Key>
-            <PropertyRef Name="RoomNumber" />
+            <PropertyRef Name="HotelRoomId" />
           </Key>
-          <Property Name="RoomNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelRoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Floor" Type="Int32" Nullable="false" />
           <Property Name="CostPerDay" Type="Int32" Nullable="false" />
           <Property Name="SeatsNumber" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="Self.FK__HotelRoom__Categ__267ABA7A" FromRole="HotelRooms" ToRole="Categories" />
-          <NavigationProperty Name="Treaties" Relationship="Self.FK__Treaties__RoomNu__31EC6D26" FromRole="HotelRooms" ToRole="Treaties" />
+          <NavigationProperty Name="Treaties" Relationship="Self.FK__Treaties__HotelR__31EC6D26" FromRole="HotelRooms" ToRole="Treaties" />
         </EntityType>
         <EntityType Name="MigrationCard">
           <Key>
             <PropertyRef Name="ClientId" />
           </Key>
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="CardNumber" Type="Int32" Nullable="false" />
-          <Property Name="WhereCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WhereCountry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StayWith" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StayBy" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TripPurpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TripPurpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK_MigrationCard_Clients_ClientId" FromRole="MigrationCards" ToRole="Clients" />
         </EntityType>
         <EntityType Name="Passport">
@@ -217,12 +221,12 @@
             <PropertyRef Name="ClientId" />
           </Key>
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="Series" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Series" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Number" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DocumentType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Issued" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IssuedAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CountryIssued" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Issued" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IssuedAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryIssued" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Passport_Clients_ClientId" FromRole="Passports" ToRole="Clients" />
         </EntityType>
         <EntityType Name="Treaty">
@@ -232,13 +236,13 @@
           <Property Name="TreatyNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TreatyDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="RoomNumber" Type="Int32" Nullable="false" />
+          <Property Name="HotelRoomId" Type="Int32" Nullable="false" />
           <Property Name="DateEntrance" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateEscape" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SumOfPay" Type="Int32" Nullable="false" />
           <Property Name="PaymentMethod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK__Treaties__Client__30F848ED" FromRole="Treaties" ToRole="Clients" />
-          <NavigationProperty Name="HotelRoom" Relationship="Self.FK__Treaties__RoomNu__31EC6D26" FromRole="Treaties" ToRole="HotelRooms" />
+          <NavigationProperty Name="HotelRoom" Relationship="Self.FK__Treaties__HotelR__31EC6D26" FromRole="Treaties" ToRole="HotelRooms" />
         </EntityType>
         <Association Name="FK__HotelRoom__Categ__267ABA7A">
           <End Role="Categories" Type="Self.Category" Multiplicity="1" />
@@ -288,19 +292,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Treaties__RoomNu__31EC6D26">
+        <Association Name="FK__Treaties__HotelR__31EC6D26">
           <End Role="HotelRooms" Type="Self.HotelRoom" Multiplicity="1" />
           <End Role="Treaties" Type="Self.Treaty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HotelRooms">
-              <PropertyRef Name="RoomNumber" />
+              <PropertyRef Name="HotelRoomId" />
             </Principal>
             <Dependent Role="Treaties">
-              <PropertyRef Name="RoomNumber" />
+              <PropertyRef Name="HotelRoomId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="HotelRooms" EntityType="Self.HotelRoom" />
@@ -323,7 +327,7 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Passports" EntitySet="Passports" />
           </AssociationSet>
-          <AssociationSet Name="FK__Treaties__RoomNu__31EC6D26" Association="Self.FK__Treaties__RoomNu__31EC6D26">
+          <AssociationSet Name="FK__Treaties__HotelR__31EC6D26" Association="Self.FK__Treaties__HotelR__31EC6D26">
             <End Role="HotelRooms" EntitySet="HotelRooms" />
             <End Role="Treaties" EntitySet="Treaties" />
           </AssociationSet>
@@ -333,9 +337,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище RKSIOlympiad2DBModelContainer" CdmEntityContainer="DataContext">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DatabaseContextContainer" CdmEntityContainer="DatabaseEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="RKSI.Olympiad2.DBModel.Category">
+            <EntityTypeMapping TypeName="DatabaseContext.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
@@ -344,10 +348,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="RKSI.Olympiad2.DBModel.Client">
+            <EntityTypeMapping TypeName="DatabaseContext.Client">
               <MappingFragment StoreEntitySet="Clients">
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="FirstAndLastName" ColumnName="FirstAndLastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="BonusCard" ColumnName="BonusCard" />
@@ -355,9 +361,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelRooms">
-            <EntityTypeMapping TypeName="RKSI.Olympiad2.DBModel.HotelRoom">
+            <EntityTypeMapping TypeName="DatabaseContext.HotelRoom">
               <MappingFragment StoreEntitySet="HotelRooms">
-                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="HotelRoomId" ColumnName="HotelRoomId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
@@ -368,7 +374,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MigrationCards">
-            <EntityTypeMapping TypeName="RKSI.Olympiad2.DBModel.MigrationCard">
+            <EntityTypeMapping TypeName="DatabaseContext.MigrationCard">
               <MappingFragment StoreEntitySet="MigrationCards">
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
@@ -380,7 +386,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Passports">
-            <EntityTypeMapping TypeName="RKSI.Olympiad2.DBModel.Passport">
+            <EntityTypeMapping TypeName="DatabaseContext.Passport">
               <MappingFragment StoreEntitySet="Passports">
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Series" ColumnName="Series" />
@@ -393,12 +399,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treaties">
-            <EntityTypeMapping TypeName="RKSI.Olympiad2.DBModel.Treaty">
+            <EntityTypeMapping TypeName="DatabaseContext.Treaty">
               <MappingFragment StoreEntitySet="Treaties">
                 <ScalarProperty Name="TreatyNumber" ColumnName="TreatyNumber" />
                 <ScalarProperty Name="TreatyDate" ColumnName="TreatyDate" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="HotelRoomId" ColumnName="HotelRoomId" />
                 <ScalarProperty Name="DateEntrance" ColumnName="DateEntrance" />
                 <ScalarProperty Name="DateEscape" ColumnName="DateEscape" />
                 <ScalarProperty Name="SumOfPay" ColumnName="SumOfPay" />

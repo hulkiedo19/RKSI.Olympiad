@@ -3,54 +3,69 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:RKSI.Olympiad.Client.ViewModels"
         xmlns:local="clr-namespace:RKSI.Olympiad.Client.Views"
         mc:Ignorable="d"
-        Title="UserWindow" 
+        Title="Управляющий" 
         ResizeMode="NoResize"
         Height="480" 
         Width="810">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <StackPanel
-            Grid.Row="0"
-            Margin="8, 8, 8, 8"
-            Orientation="Horizontal"
-            HorizontalAlignment="Center">
-            <Button 
-                Width="120"
-                Content="Show treaty"
-                Margin="0, 0, 5, 0"
-                Command=""/>
-            <Button 
-                Width="120"
-                Content="Show client"
-                Margin="5, 0, 5, 0"/>
-            <Button 
-                Width="120"
-                Content="Show category"
-                Margin="5, 0, 5, 0"/>
-            <Button 
-                Width="120"
-                Content="Show Hotel room"
-                Margin="5, 0, 5, 0"/>
-            <Button 
-                Width="120"
-                Content="Show Passport"
-                Margin="5, 0, 5, 0"/>
-            <Button 
-                Width="120"
-                Content="Show Migration Card"
-                Margin="5, 0, 0, 0"/>
-        </StackPanel>
-        <DataGrid
-            Grid.Row="1"
-            Margin="5, 5, 5, 5"
-            x:Name="GridDB">
-            
-        </DataGrid>
+    <Window.DataContext>
+        <vm:UserWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+
+        <TabControl Grid.Row="1">
+
+            <TabItem 
+                Header="Отметка о выселении">
+
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding EscapeTreaties}">
+                    
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Договор"
+                            Width="*"
+                            Binding="{Binding Path=TreatyNumber}"/>
+                        <DataGridTextColumn
+                            Header="Гостиничный номер"
+                            Width="*"
+                            Binding="{Binding Path=RoomNumber}"/>
+                        <DataGridTextColumn
+                            Header="Фамилия"
+                            Width="*"
+                            Binding="{Binding Path=Client.LastName}"/>
+                        <DataGridTextColumn
+                            Header="Имя и отчество"
+                            Width="*"
+                            Binding="{Binding Path=Client.FirstAndMiddleName}"/>
+                        <DataGridTextColumn
+                            Header="Дата заезда"
+                            Width="*"
+                            Binding="{Binding Path=StringEntranceDate}"/>
+                        <DataGridTextColumn
+                            Header="Дата выезда"
+                            Width="*"
+                            Binding="{Binding Path=StringEscapeDate}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+            </TabItem>
+
+            <TabItem 
+                Header="Отчет о постоянных клиентах">
+                
+            </TabItem>
+
+            <TabItem 
+                Header="Отчет об иностранных клиентах">
+
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>

@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "D:\19\common\RKSI.Olympiad\RKSI.Olympiad.Client\Models\DataContext.edmx" включено. 
+﻿// Создание кода T4 для модели "D:\19\common\RKSI.Olympiad\RKSI.Olympiad.Client\Models\DatabaseModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

@@ -18,7 +18,7 @@ namespace RKSI.Olympiad.Client.Models
         public string Series { get; set; }
         public string Number { get; set; }
         public string DocumentType { get; set; }
-        public System.DateTime Issued { get; set; }
+        public string Issued { get; set; }
         public string IssuedAddress { get; set; }
         public string CountryIssued { get; set; }
     

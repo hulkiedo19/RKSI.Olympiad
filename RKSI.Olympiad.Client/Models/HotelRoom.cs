@@ -20,7 +20,7 @@ namespace RKSI.Olympiad.Client.Models
             this.Treaties = new HashSet<Treaty>();
         }
     
-        public int RoomNumber { get; set; }
+        public int HotelRoomId { get; set; }
         public int CategoryId { get; set; }
         public string Description { get; set; }
         public int Floor { get; set; }

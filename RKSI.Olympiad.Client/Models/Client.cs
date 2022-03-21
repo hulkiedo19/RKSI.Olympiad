@@ -11,7 +11,8 @@ namespace RKSI.Olympiad.Client.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Client
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,9 @@ namespace RKSI.Olympiad.Client.Models
         }
     
         public int ClientId { get; set; }
-        public string FirstAndLastName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
         public string Gender { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string BonusCard { get; set; }
@@ -30,5 +33,8 @@ namespace RKSI.Olympiad.Client.Models
         public virtual ICollection<Treaty> Treaties { get; set; }
         public virtual MigrationCard MigrationCard { get; set; }
         public virtual Passport Passport { get; set; }
+
+        [NotMapped]
+        public virtual string FirstAndMiddleName => $"{FirstName} {MiddleName}";
     }
 }

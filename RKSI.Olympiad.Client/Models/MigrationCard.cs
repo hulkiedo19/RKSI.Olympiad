@@ -15,7 +15,7 @@ namespace RKSI.Olympiad.Client.Models
     public partial class MigrationCard
     {
         public int ClientId { get; set; }
-        public int CardNumber { get; set; }
+        public string CardNumber { get; set; }
         public string WhereCountry { get; set; }
         public System.DateTime StayWith { get; set; }
         public System.DateTime StayBy { get; set; }
