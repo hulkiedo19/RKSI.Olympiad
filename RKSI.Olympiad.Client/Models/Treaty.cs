@@ -28,8 +28,8 @@ namespace RKSI.Olympiad.Client.Models
         public virtual HotelRoom HotelRoom { get; set; }
 
         [NotMapped]
-        public string StringEscapeDate => DateEscape.Date.ToString("dd MM");
+        public string StringEscapeDate => DateEscape.Date.ToString("dd MMMM");
         [NotMapped]
-        public string StringEntranceDate => DateEntrance.Date.ToString("dd MM");
+        public string StringEntranceDate => DateEntrance.Date.ToString("dd MMMM");
     }
 }

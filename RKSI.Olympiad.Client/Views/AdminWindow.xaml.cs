@@ -11,12 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RKSI.Olympiad.Client.ViewModels;
 
 namespace RKSI.Olympiad.Client.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
-    /// </summary>
     public partial class AdminWindow : Window
     {
         public AdminWindow()

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RKSI.Olympiad.Client.Views"
         xmlns:vm="clr-namespace:RKSI.Olympiad.Client.ViewModels"
+        xmlns:vm2="clr-namespace:RKSI.Olympiad.Client.ViewModels"
         mc:Ignorable="d"
         Title="AdminWindow"
         ResizeMode="NoResize"
@@ -12,7 +13,7 @@
         Width="500">
     <Window.DataContext>
         <vm:AdminWindowViewModel/>
-    </Window.DataContext>    
+    </Window.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -54,6 +55,7 @@
 
                     <TextBlock
                         Text="Дата рождения"/>
+                    
                     <DatePicker 
                         Text="{Binding DateOfBirth}"/>
 
@@ -151,9 +153,110 @@
                 </StackPanel>
             </TabItem>
 
+            <!-- Вселение клиента -->
             <TabItem
                 Header="Вселение клиента">
 
+                <StackPanel
+                    Margin="8">
+                    <TextBlock>
+                        Прошедшие регистрацию клиенты
+                    </TextBlock>
+
+                    <DataGrid
+                        Height="180"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible"
+                        AutoGenerateColumns="False"
+                        SelectedItem="{Binding SelectedClient}"
+                        ItemsSource="{Binding Clients}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Фамилия"
+                                Width="*"
+                                Binding="{Binding Path=LastName}"/>
+
+                            <DataGridTextColumn
+                                Header="Имя"
+                                Width="*"
+                                Binding="{Binding Path=FirstName}"/>
+
+                            <DataGridTextColumn
+                                Header="Отчество"
+                                Width="*"
+                                Binding="{Binding Path=MiddleName}"/>
+
+                            <DataGridTextColumn
+                                Header="Бонусная карта"
+                                Width="*"
+                                Binding="{Binding Path=BonusCard}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBlock>
+                        Выберите гостиничный номер
+                    </TextBlock>
+
+                    <DataGrid
+                        Height="180"
+                        AutoGenerateColumns="False"
+                        SelectedItem="{Binding SelectedHotelRoom}"
+                        ItemsSource="{Binding HotelRooms}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn 
+                                Header="Обозначение"
+                                Width="*"
+                                Binding="{Binding Path=Category.Designation}"/>
+
+                            <DataGridTextColumn 
+                                Header="Описание"
+                                Width="*"
+                                Binding="{Binding Path=Description}"/>
+
+                            <DataGridTextColumn 
+                                Header="Цена за сутки"
+                                Width="*"
+                                Binding="{Binding Path=CostPerDay}"/>
+
+                            <DataGridTextColumn 
+                                Header="Количество мест"
+                                Width="*"
+                                Binding="{Binding Path=SeatsNumber}"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <TextBlock>
+                        Дата заезда
+                    </TextBlock>
+
+                    <DatePicker 
+                        SelectedDate="{Binding DateEntrance}"/>
+
+                    <TextBlock>
+                        Дата выезда
+                    </TextBlock>
+
+                    <DatePicker 
+                        SelectedDate="{Binding DateEscape}"/>
+
+                    <TextBlock
+                        Text="Сумма оплаты с учетом бонусной карты"/>
+
+                    <TextBlock
+                        Text="{Binding ResultSum,  UpdateSourceTrigger=PropertyChanged}"
+                        Foreground="Gray"/>
+
+                    <Button
+                        Command="{Binding MovingInClientCommand}"
+                        Margin="0, 12, 0, 0">
+                        Вселить клиента
+                    </Button>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

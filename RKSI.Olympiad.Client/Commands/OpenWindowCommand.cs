@@ -24,4 +24,18 @@ namespace RKSI.Olympiad.Client.Commands
             _oldWindow.Close();
         }
     }
+    public class OpenErrorWindowCommand : Command
+    {
+        private Window _errorWindow;
+
+        public OpenErrorWindowCommand(Window ErrorWindow)
+        {
+            _errorWindow = ErrorWindow;
+        }
+
+        public override void Execute(object parameter)
+        {
+            _errorWindow.Show();
+        }
+    }
 }

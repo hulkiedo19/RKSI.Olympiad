@@ -34,6 +34,10 @@ namespace RKSI.Olympiad.Client.Commands
             {
                 var command = new OpenWindowCommand(new UserWindow(), Application.Current.MainWindow);
                 command.Execute(parameter);
+            } else
+            {
+                var command = new OpenErrorWindowCommand(new ErrorWindow());
+                command.Execute(parameter);
             }
         }
     }

@@ -34,7 +34,7 @@
                         <DataGridTextColumn
                             Header="Гостиничный номер"
                             Width="*"
-                            Binding="{Binding Path=RoomNumber}"/>
+                            Binding="{Binding Path=HotelRoom.HotelRoomId}"/>
                         <DataGridTextColumn
                             Header="Фамилия"
                             Width="*"

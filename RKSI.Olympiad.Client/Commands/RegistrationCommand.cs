@@ -42,12 +42,26 @@ namespace RKSI.Olympiad.Client.Commands
                     CountryIssued = _viewModel.IssuedCountry
                 };
 
+                if(_viewModel.DocumentType == "Иностранный паспорт")
+                {
+                    MigrationCard migrationCard = new MigrationCard()
+                    {
+                        Client = client,
+                        CardNumber = _viewModel.MigrationCardNumber,
+                        WhereCountry = _viewModel.WhereCountry,
+                        StayWith = Convert.ToDateTime(_viewModel.StayWith),
+                        StayBy = Convert.ToDateTime(_viewModel.StayBy),
+                        TripPurpose = _viewModel.TripPurpose,
+                    };
+
+                    client.MigrationCard = migrationCard;
+                }
+
                 client.Passport = passport;
 
                 dbContext.Clients.Add(client);
                 dbContext.SaveChanges();
             }
-            //base.Execute(parameter);
         }
     }
 }

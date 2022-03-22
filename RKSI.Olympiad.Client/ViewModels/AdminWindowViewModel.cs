@@ -1,4 +1,5 @@
 ﻿using RKSI.Olympiad.Client.Commands;
+using RKSI.Olympiad.Client.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,83 @@ namespace RKSI.Olympiad.Client.ViewModels
         private string _issuedCountry;
         private string _bonusCard;
 
+        private string _migrationCardNumber;
+        private string _whereCountry;
+        private string _stayWith;
+        private string _stayBy;
+        private string _tripPurpose;
+
+        private object _dateEntrance;
+        private object _dateEscape;
+
+        private List<Models.Client> _clients;
+        private List<HotelRoom> _hotelRooms;
+
+        private object _selectedHotelRoom = null;
+        private object _selectedClient = null;
+
         public ICommand RegistrationCommand => new RegistrationCommand(this);
+        public ICommand MovingInClientCommand => new CreateTreatyCommand(this);
+
+        public AdminWindowViewModel()
+        {
+            using (var DbContext = new DatabaseEntities())
+            {
+                var today = DateTime.Today;
+
+                Clients = DbContext.Clients
+                    //.Where(c => DbFunctions.TruncateTime(c.))
+                    .ToList();
+
+                HotelRooms = DbContext.HotelRooms
+                    .Include(nameof(HotelRoom.Category))
+                    .ToList();
+            }
+        }
+
+        private string _resultSum;
+
+        public string ResultSum 
+        {
+            get => _resultSum;
+            set => Set(ref _resultSum, value, nameof(ResultSum));
+        }
+
+        public object SelectedHotelRoom
+        {
+            get => _selectedHotelRoom;
+            set
+            {
+                Set(ref _selectedHotelRoom, value, nameof(SelectedHotelRoom));
+            }
+        }
+
+        public object SelectedClient
+        {
+            get => _selectedClient;
+            set
+            {
+                Set(ref _selectedClient, value, nameof(SelectedClient));
+            }
+        }
+
+        public List<Models.Client> Clients
+        {
+            get => _clients;
+            set
+            {
+                Set(ref _clients, value, nameof(Clients));
+            }
+        }
+
+        public List<HotelRoom> HotelRooms
+        {
+            get => _hotelRooms;
+            set
+            {
+                Set(ref _hotelRooms, value, nameof(HotelRooms));
+            }
+        }
 
         public string FirstName
         {
@@ -95,6 +172,48 @@ namespace RKSI.Olympiad.Client.ViewModels
         {
             get => _bonusCard;
             set => Set(ref _bonusCard, value, nameof(BonusCard));
+        }
+
+        public string MigrationCardNumber
+        {
+            get => _migrationCardNumber;
+            set => Set(ref _migrationCardNumber, value, nameof(MigrationCardNumber));
+        }
+
+        public string WhereCountry
+        {
+            get => _whereCountry;
+            set => Set(ref _whereCountry, value, nameof(WhereCountry));
+        }
+
+        public string StayWith
+        {
+            get => _stayWith;
+            set => Set(ref _stayWith, value, nameof(StayWith));
+        }
+
+        public string StayBy
+        {
+            get => _stayBy;
+            set => Set(ref _stayBy, value, nameof(StayBy));
+        }
+
+        public string TripPurpose
+        {
+            get => _tripPurpose;
+            set => Set(ref _tripPurpose, value, nameof(TripPurpose));
+        }
+
+        public object DateEntrance
+        {
+            get => _dateEntrance;
+            set => Set(ref _dateEntrance, value, nameof(DateEntrance));
+        }
+
+        public object DateEscape
+        {
+            get => _dateEscape;
+            set => Set(ref _dateEscape, value, nameof(DateEscape));
         }
     }
 }

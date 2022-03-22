@@ -12,8 +12,8 @@ namespace RKSI.Olympiad.Client.ViewModels
     {
         private List<Treaty> _escapeTreaties;
 
-        public List<Treaty> EscapeTreaties 
-        { 
+        public List<Treaty> EscapeTreaties
+        {
             get => _escapeTreaties;
             set
             {
@@ -23,14 +23,15 @@ namespace RKSI.Olympiad.Client.ViewModels
 
         public UserWindowViewModel()
         {
-            using(var dbContext = new DatabaseEntities())
+            using (var dbContext = new DatabaseEntities())
             {
                 var today = DateTime.Today;
 
                 EscapeTreaties = dbContext.Treaties
                     .Include(nameof(Treaty.Client))
-                    //.Where(t => DbFunctions.TruncateTime(t.DateEscape) == today)                    
-                    .ToList();                    
+                    .Include(nameof(Treaty.HotelRoom))
+                    .Where(t => DbFunctions.TruncateTime(t.DateEscape) == today)                    
+                    .ToList();
             }
         }
     }

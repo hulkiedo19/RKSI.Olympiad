@@ -1,0 +1,36 @@
+﻿<Window x:Class="RKSI.Olympiad.Client.Views.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RKSI.Olympiad.Client.Views"
+        mc:Ignorable="d"
+        Title="ErrorWindow" 
+        ResizeMode="NoResize"
+        Height="200" 
+        Width="250">
+    <Grid>
+        <StackPanel
+            Orientation="Vertical"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="8">
+            <TextBlock
+                HorizontalAlignment="Center"
+                Margin="0, 8, 0, 8">
+                Ошибка ввода
+            </TextBlock>
+            <TextBlock
+                HorizontalAlignment="Center"
+                Margin="0, 8, 0, 8">
+                Попробуйте ввести данные снова
+            </TextBlock>
+
+            <Button
+                Margin="8" 
+                Click="Button_Click">
+                Закрыть
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
